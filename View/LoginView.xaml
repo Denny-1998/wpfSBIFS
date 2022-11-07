@@ -89,7 +89,7 @@
         <Style TargetType="TextBox" x:Key="login_textbox">
             <Setter Property="VerticalContentAlignment" Value="Bottom"/>
             <Setter Property="Padding" Value="10, 0, 10, 2"/>
-            <Setter Property="Margin" Value="0, 10, 40, 12"/>
+            <Setter Property="Margin" Value="0, 10, 20, 12"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="{StaticResource fg}"/>
             <Setter Property="BorderThickness" Value="0, 0, 0, 2"/>
@@ -133,7 +133,7 @@
         <Style TargetType="PasswordBox">
             <Setter Property="VerticalContentAlignment" Value="Bottom"/>
             <Setter Property="Padding" Value="10, 0, 10, 5"/>
-            <Setter Property="Margin" Value="0, 10, 40, 12"/>
+            <Setter Property="Margin" Value="0, 10, 20, 12"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="{StaticResource fg}"/>
             <Setter Property="BorderThickness" Value="0, 0, 0, 2"/>
@@ -213,10 +213,10 @@
                 <!-- Username container -->
                 <Grid 
                     Grid.Row="1"
-                    Margin="40, 0">
+                    Margin="60, 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.5*"/>
                     </Grid.ColumnDefinitions>
 
                     <Label
@@ -233,10 +233,10 @@
                 <!-- Password container -->
                 <Grid 
                     Grid.Row="2"
-                    Margin="40, 0">
+                    Margin="60, 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.5*"/>
                     </Grid.ColumnDefinitions>
 
                     <Label
