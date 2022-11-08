@@ -2,16 +2,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Define colorscheme -->
-    <SolidColorBrush x:Key="bg" Color="#BBBBBB"/>
-    <SolidColorBrush x:Key="txt_bg" Color="#9E9E9E"/>
-    <SolidColorBrush x:Key="border_bg" Color="#9E9E9E"/>
-    <SolidColorBrush x:Key="fg" Color="#3D3D3D"/>
-    <SolidColorBrush x:Key="clicked" Color="#613F13"/>
-    <Color x:Key="bg_color">#BBBBBB</Color>
-    <Color x:Key="txt_bg_color">#9E9E9E</Color>
-    <Color x:Key="border_bg_color">#9E9E9E</Color>
+    <SolidColorBrush x:Key="bg" Color="#d9d9d9"/>
+    <SolidColorBrush x:Key="txt_bg" Color="#e6e6e6"/>
+    <SolidColorBrush x:Key="border_bg" Color="#e6e6e6"/>
+    <SolidColorBrush x:Key="fg" Color="#3d3d3d"/>
+    <SolidColorBrush x:Key="clicked" Color="#f7591f"/>
+    <Color x:Key="bg_color">#d9d9d9</Color>
+    <Color x:Key="txt_bg_color">#e6e6e6</Color>
+    <Color x:Key="border_bg_color">#e6e6e6</Color>
     <Color x:Key="fg_color">#3D3D3D</Color>
-    <Color x:Key="clicked_button">#613F13</Color>
+    <Color x:Key="clicked_button">#f7591f</Color>
 
     <!-- Main grids -->
     <Style TargetType="Grid" x:Key="main_grid">
