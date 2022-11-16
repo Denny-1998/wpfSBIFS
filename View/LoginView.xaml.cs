@@ -12,21 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Unity;
-using wpfSBIFS.View;
+using wpfSBIFS.ViewModel;
 
-namespace wpfSBIFS
+namespace wpfSBIFS.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginView : UserControl
     {
-        public MainWindow()
+        ILoginViewModel loginViewModel;
+
+        public LoginView(ILoginViewModel viewModel)
         {
             InitializeComponent();
-            ((App)App.Current).ccRef = this.ccPanel;
-            ((App)App.Current).ChangeUserControl(App.container.Resolve<LoginView>());
+
+            // Set viewmodel received from DI as binding context
+            loginViewModel = viewModel;
+            this.DataContext = viewModel;
         }
     }
 }
