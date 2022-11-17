@@ -54,9 +54,30 @@ namespace wpfSBIFS.Model
 
 
         public async Task Login(string User, string Password)
+
+
         {
-            //TODO
-            //do stuff
+
+            //TODO: error handling
+
+            //adding byte data for request
+            Byte[] data = System.Text.Encoding.ASCII.GetBytes("{"+$"\"email:\":\"{User}\",\"password\":\"{Password}\"" +"}");
+            _ns.Write(data,0,data.Length);
+            // Buffer to store the response bytes.
+            data = new Byte[256];
+            String responseData = String.Empty;
+            Int32 bytes = _ns.Read(data, 0, data.Length);
+            responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+
+            //TODO: Get status code
+            if (responseData.Contains($"{User}")){
+                MessageBox.Show("Logged in successfully!");
+
+            } else if (responseData.Contains("Wrong"))
+            {
+                MessageBox.Show("Wrong username or password! \n");
+            }
+
         }
 
     }
