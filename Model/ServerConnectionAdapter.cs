@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace wpfSBIFS.Model
 {
@@ -27,6 +29,7 @@ namespace wpfSBIFS.Model
             connect();
         }
 
+
         private async Task connect()
         {
             //build new connection
@@ -35,13 +38,24 @@ namespace wpfSBIFS.Model
             cb.AddPort(_Port);
 
             //connect 
-            _client = await cb.Connect();
+            try
+            {
+                _client = await cb.Connect();
+                _ns = _client.GetStream();
+                _reader = new StreamReader(_ns);
+            } 
+            catch (Exception ex)
+            {
+                MessageBox.Show("something went wrong: \n\n" + ex.Message);
+            }
+
         }
 
 
 
         public async Task Login(string User, string Password)
         {
+            //TODO
             //do stuff
         }
 
