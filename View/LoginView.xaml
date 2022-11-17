@@ -56,6 +56,7 @@
                         Style="{StaticResource login_label}"/>
 
                     <TextBox
+                        x:Name="tbUserName"
                         Grid.Column="1"
                         Style="{StaticResource login_textbox}">
                     </TextBox>
@@ -75,14 +76,14 @@
                         Content="Password:"
                         Style="{StaticResource login_label}"/>
 
-                    <PasswordBox Grid.Column="1"/>
+                    <PasswordBox Grid.Column="1" x:Name="pbPassword"/>
                 </Grid>
                 
                 <!-- Button container -->
                 <Grid Grid.Row="3">
                     <Button
                         Style="{StaticResource base_button}"
-                        Content="Login"/>
+                        Content="Login" Click="Button_Click"/>
                 </Grid>
             </Grid>
         </Border>
