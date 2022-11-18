@@ -54,11 +54,18 @@ namespace wpfSBIFS.Model
 
 
         public async Task Login(string User, string Password)
-
-
         {
 
+            //error handling for if user or password is empty 
+            if (User.Equals("") || Password.Equals(""))
+            {
+                MessageBox.Show("Please enter username");
+                return;
+            }
+
+
             //TODO: error handling
+            //          check if username and password are empty
 
             //adding byte data for request
             Byte[] data = System.Text.Encoding.ASCII.GetBytes("{"+$"\"email:\":\"{User}\",\"password\":\"{Password}\"" +"}");
