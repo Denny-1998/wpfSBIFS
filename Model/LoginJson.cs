@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace wpfSBIFS.Model
 {
-    internal class LoginJson
+    public class LoginJson : IJson
     {
+        public string Email { get; set; }
+        public string Password { get; set; }
+
     }
 }

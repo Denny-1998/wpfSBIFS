@@ -112,7 +112,7 @@ namespace wpfSBIFS.Model {
             };
 
             //making the login request
-            var response = await client.PostAsJsonAsync("https://localhost:8080/Api/Auth/Login", registerJson);
+            var response = await client.PostAsJsonAsync("https://localhost:8080/Api/Auth/Register", registerJson);
 
             //defining the cariable statuscode which was extracted from the request response
             var StatusCode = (Int32)response.StatusCode;
