@@ -42,7 +42,7 @@ namespace wpfSBIFS.Model
             {
                 _client = await cb.Connect();
                 _ns = _client.GetStream();
-                _reader = new StreamReader(_ns);
+                _reader = new StreamReader(_ns, Encoding.UTF8);
             } 
             catch (Exception ex)
             {
@@ -65,17 +65,18 @@ namespace wpfSBIFS.Model
 
 
             //TODO: error handling
-            //          check if username and password are empty
+            //try around with headers
+            var message = @"GET /api/Auth HTTP/1.1
+Host: localhost" + "\r\n\r\n";
+
 
             //adding byte data for request
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes("{"+$"\"email:\":\"{User}\",\"password\":\"{Password}\"" +"}");
+            Byte[] data = Encoding.UTF8.GetBytes(message);
             _ns.Write(data,0,data.Length);
-            // Buffer to store the response bytes.
-            data = new Byte[256];
-            String responseData = String.Empty;
-            Int32 bytes = _ns.Read(data, 0, data.Length);
-            responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+            //getting response
+            MessageBox.Show(_reader.ReadToEnd());
 
+            /*
             //TODO: Get status code
             if (responseData.Contains($"{User}")){
                 MessageBox.Show("Logged in successfully!");
@@ -83,7 +84,7 @@ namespace wpfSBIFS.Model
             } else if (responseData.Contains("Wrong"))
             {
                 MessageBox.Show("Wrong username or password! \n");
-            }
+            }*/
 
         }
 
