@@ -64,7 +64,7 @@ namespace wpfSBIFS.Model {
 
 
 
-        public async Task Login(string User, string Password)
+        public async Task <bool> Login(string User, string Password)
         {
 
             //error handling for if user or password is empty 
@@ -87,7 +87,7 @@ namespace wpfSBIFS.Model {
             if (Util.CheckStatusCode(StatusCode) != "")
             {
                 MessageBox.Show((Util.CheckStatusCode(StatusCode)));
-                return;
+                return false;
             }
 
             //parsing the response text 
@@ -95,10 +95,11 @@ namespace wpfSBIFS.Model {
 
             //getting the jwt login token from response text
             jwt = (string)json["jwt"];
+            return true;
 
 
         }
-        public async Task Register(string User, string Password)
+        public async Task <bool> Register(string User, string Password)
         {
 
             //error handling for if user or password is empty 
@@ -121,7 +122,7 @@ namespace wpfSBIFS.Model {
             if (Util.CheckStatusCode(StatusCode) != "")
             {
                 MessageBox.Show((Util.CheckStatusCode(StatusCode)));
-                return;
+                return false;
             }
 
             //parsing the response text 
@@ -129,7 +130,7 @@ namespace wpfSBIFS.Model {
 
             //getting the jwt login token from response text
             jwt = (string)json["jwt"];
-
+            return true;
 
         }
 
