@@ -78,7 +78,7 @@ namespace wpfSBIFS.Model {
             };
 
             //making the login request
-            var response = await client.PostAsJsonAsync("https://localhost:8080/Api/Auth/Login", loginJson);
+            var response = await client.PostAsJsonAsync($"https://{_HostName}:{_Port}/api/Auth/Login", loginJson);
 
             //defining the cariable statuscode which was extracted from the request response
             var StatusCode = (Int32)response.StatusCode;
@@ -89,12 +89,14 @@ namespace wpfSBIFS.Model {
                 MessageBox.Show((Util.CheckStatusCode(StatusCode)));
                 return false;
             }
+            MessageBox.Show("status code: " + StatusCode);
 
             //parsing the response text 
             JObject json = JObject.Parse(response.Content.ToString());
 
             //getting the jwt login token from response text
             jwt = (string)json["jwt"];
+
             return true;
 
 
@@ -113,7 +115,7 @@ namespace wpfSBIFS.Model {
             };
 
             //making the login request
-            var response = await client.PostAsJsonAsync("https://localhost:8080/Api/Auth/Register", registerJson);
+            var response = await client.PostAsJsonAsync($"https://{_HostName}:{_Port}/Api/Auth/Register", registerJson);
 
             //defining the cariable statuscode which was extracted from the request response
             var StatusCode = (Int32)response.StatusCode;

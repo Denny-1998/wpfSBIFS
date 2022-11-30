@@ -46,7 +46,7 @@ namespace wpfSBIFS.Tools
 
 
         }
-        public static Boolean CheckUsernamePassword(string username,string password)
+        public static Boolean CheckUsernamePassword(string username, string password)
         {
             if (username.Equals("") || password.Equals(""))
             {
@@ -54,7 +54,7 @@ namespace wpfSBIFS.Tools
             }
             return false;
         }
-        
-        
+
+    }
 
 }
