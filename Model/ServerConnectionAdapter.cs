@@ -76,15 +76,13 @@ namespace wpfSBIFS.Model {
                 //showing the error under the login button
                 return await Util.LabelChangeAsync(label, errorString);
             }
+
             //parsing the response text 
             JObject json = JObject.Parse(await response.Content.ReadAsStringAsync());
 
             //getting the jwt login token from response text
             jwt = (string)json["jwt"];
-            
-            //Adding jwt as a header to the client basically a session now
-            client.DefaultRequestHeaders.Add("jwt", "Bearer" + jwt);
-            return  true;
+            return true;
 
 
         }
@@ -102,7 +100,7 @@ namespace wpfSBIFS.Model {
             };
 
             //making the login request
-            var response = await client.PostAsJsonAsync("https://localhost:8080/Api/Auth/Register", registerJson);
+            var response = await client.PostAsJsonAsync($"https://{_HostName}:{_Port}/Api/Auth/Register", registerJson);
 
             //defining the cariable statuscode which was extracted from the request response
             var StatusCode = (Int32)response.StatusCode;
