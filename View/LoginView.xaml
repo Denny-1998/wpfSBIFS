@@ -22,25 +22,14 @@
 
 
             <!--Right Section-->
-            <Border Grid.Column="1" Background="#ffffff" CornerRadius="0 10 10 0" >
-                <Grid>
-
-
-                    <!--Inputs-->
+            <Border Grid.Column="1" Background="#ffffff" CornerRadius="10 10 10 10" >
+            <Grid>
+                <!--Inputs-->
                     <StackPanel VerticalAlignment="Center" Margin="75 0">
-                        <TextBox x:Name="tbUserName" BorderThickness="0 0 0 1.5" Opacity="0.5" BorderBrush="#C5C8CC" Text="John.Doe_am" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-
-
-                    <PasswordBox x:Name="pbPassword" BorderThickness="0 0 0 1.5"  Opacity="0.5" BorderBrush="#C5C8CC"   Password="1234567890" Margin="0 27 0 0" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
-                        <!-- make a label in the middle with name lbLoginStatus-->
-                        <Label x:Name="lblLoginStatus" Content="" HorizontalAlignment="Center"></Label>
-
-
-
-
-
-
-                        <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="tbUserName" BorderThickness="0 0 0 1.5" Opacity="0.5" BorderBrush="#C5C8CC" Text="your@email.com" Style="{StaticResource MaterialDesignFloatingHintTextBox}" GotFocus="Username_OnClick"/>
+                    <PasswordBox x:Name="pbPassword" BorderThickness="0 0 0 1.5"  Opacity="0.5" BorderBrush="#C5C8CC"   Password="1234567890" Margin="0 27 0 0" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" GotFocus="Password_OnClick" />
+                    <Label x:Name="lblLoginStatus" Content="" HorizontalAlignment="Center"></Label>
+                    <StackPanel Orientation="Horizontal">
                             <Button  Content="Login" Background="#05B790" Foreground="#ffffff" FontSize="18" Height="45" Width="350" Click="Button_Click" />
                            
                         </StackPanel>
@@ -49,9 +38,6 @@
             </Border>
 
         </Grid>
-
-
-
 
 
  </UserControl>

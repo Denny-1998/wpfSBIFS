@@ -65,8 +65,21 @@ namespace wpfSBIFS.View
 
 
         }
-
         
+        public void Username_OnClick(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Opacity = 1;
+            tb.Text = string.Empty;
+            tb.GotFocus -= Username_OnClick;
+        }
+        public void Password_OnClick(object sender, RoutedEventArgs e)
+        {
+            PasswordBox pb = (PasswordBox)sender;
+            pb.Opacity = 1;
+            pb.Password = string.Empty;
+            pb.GotFocus -= Password_OnClick;
+        }
     }
     
 }
