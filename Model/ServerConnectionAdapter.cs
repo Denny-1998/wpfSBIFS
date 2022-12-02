@@ -15,50 +15,29 @@ using System.Xml.Linq;
 using System.Text.Json;
 using Newtonsoft.Json.Linq;
 using wpfSBIFS.Tools;
+using System.Reflection.Emit;
+using System.Windows.Controls;
+using Label = System.Windows.Controls.Label;
 
 namespace wpfSBIFS.Model { 
 
     public class ServerConnectionAdapter
     {
     
-        TcpClient _client;
-        NetworkStream _ns;
-        StreamReader _reader;
+        
         HttpClient client;
-
+        Label label;
         string _HostName;
         int _Port;
         string jwt;
 
       
-        public ServerConnectionAdapter(string HostName, int Port)
+        public ServerConnectionAdapter(string HostName, int Port, HttpClient client,Label label)
         {
             _HostName = HostName;
             _Port = Port;
-            
-            connect();
-        }
-
-
-        private async Task connect()
-        {
-            //build new connection
-            ConnectionBuilder cb = new ConnectionBuilder();
-            cb.AddHostname(_HostName);
-            cb.AddPort(_Port);
-
-            //connect 
-            try
-            {
-                _client = await cb.Connect();
-                _ns = _client.GetStream();
-                _reader = new StreamReader(_ns, Encoding.UTF8);
-                client = new HttpClient();
-            } 
-            catch (Exception ex)
-            {
-                MessageBox.Show("something went wrong: \n\n" + ex.Message);
-            }
+            this.client = client;
+            this.label = label;
 
         }
 
@@ -66,9 +45,14 @@ namespace wpfSBIFS.Model {
 
         public async Task <bool> Login(string User, string Password)
         {
+           
 
             //error handling for if user or password is empty 
-            if (Util.CheckUsernamePassword(User, Password)) MessageBox.Show("Please enter username & password!");
+            if (Util.CheckUsernamePassword(User, Password))
+            {
+                //showing the error under the login button
+                return await Util.LabelChangeAsync(label, "Please enter a username and password");
+            }
 
             //attaching user and password to login json 
             IJson loginJson = new LoginJson
@@ -77,25 +61,30 @@ namespace wpfSBIFS.Model {
                 Password = Password,
             };
 
-            //making the login request
+            //set timeout for client
+            client.Timeout = TimeSpan.FromSeconds(5);
             var response = await client.PostAsJsonAsync("https://localhost:8080/Api/Auth/Login", loginJson);
-
+         
             //defining the cariable statuscode which was extracted from the request response
             var StatusCode = (Int32)response.StatusCode;
 
             //Checking the statuscode for all kinds of error statuscodes
             if (Util.CheckStatusCode(StatusCode) != "")
             {
-                MessageBox.Show((Util.CheckStatusCode(StatusCode)));
-                return false;
+                //getting the error code from method
+                string errorString = (Util.CheckStatusCode(StatusCode));
+                //showing the error under the login button
+                return await Util.LabelChangeAsync(label, errorString);
             }
-
             //parsing the response text 
-            JObject json = JObject.Parse(response.Content.ToString());
+            JObject json = JObject.Parse(await response.Content.ReadAsStringAsync());
 
             //getting the jwt login token from response text
             jwt = (string)json["jwt"];
-            return true;
+            
+            //Adding jwt as a header to the client basically a session now
+            client.DefaultRequestHeaders.Add("jwt", "Bearer" + jwt);
+            return  true;
 
 
         }

@@ -1,91 +1,57 @@
-﻿<UserControl x:Class="wpfSBIFS.View.LoginView"
+﻿
+<UserControl x:Class="wpfSBIFS.View.LoginView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:wpfSBIFS.View"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1500">
-    
-    <Grid Style="{StaticResource main_grid}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.5*"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="1.5*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+             d:DesignHeight="600" d:DesignWidth="540"
+             FontFamily="{DynamicResource MaterialDesignFont}">
+        <Grid Margin="20">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="30" ShadowDepth="1" Opacity="0.4"/>
+            </Grid.Effect>
 
-        <!-- Content container -->
-        <Border
-                Grid.Column="1"
-                Grid.Row="1"
-                Style="{StaticResource content_border}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="6*"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+            </Grid.ColumnDefinitions>
 
-                <!-- Image container -->
-                <Grid 
-                    Grid.Row="0"
-                    Margin="40, 60, 40, 20">
-                    <Image Source="../Resources/login.png"/>
+            <!--Left Section-->
+
+
+            <!--Right Section-->
+            <Border Grid.Column="1" Background="#ffffff" CornerRadius="0 10 10 0" >
+                <Grid>
+
+
+                    <!--Inputs-->
+                    <StackPanel VerticalAlignment="Center" Margin="75 0">
+                        <TextBox x:Name="tbUserName" BorderThickness="0 0 0 1.5" Opacity="0.5" BorderBrush="#C5C8CC" Text="John.Doe_am" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+
+                    <PasswordBox x:Name="pbPassword" BorderThickness="0 0 0 1.5"  Opacity="0.5" BorderBrush="#C5C8CC"   Password="1234567890" Margin="0 27 0 0" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                        <!-- make a label in the middle with name lbLoginStatus-->
+                        <Label x:Name="lblLoginStatus" Content="" HorizontalAlignment="Center"></Label>
+
+
+
+
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button  Content="Login" Background="#05B790" Foreground="#ffffff" FontSize="18" Height="45" Width="350" Click="Button_Click" />
+                           
+                        </StackPanel>
+                    </StackPanel>
                 </Grid>
+            </Border>
 
-                <!-- Username container -->
-                <Grid 
-                    Grid.Row="1"
-                    Margin="60, 0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
+        </Grid>
 
-                    <Label
-                        Grid.Column="0"
-                        Content="Username:"
-                        Style="{StaticResource login_label}"/>
 
-                    <TextBox
-                        x:Name="tbUserName"
-                        Grid.Column="1"
-                        Style="{StaticResource login_textbox}">
-                    </TextBox>
-                </Grid>
-                
-                <!-- Password container -->
-                <Grid 
-                    Grid.Row="2"
-                    Margin="60, 0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
 
-                    <Label
-                        Grid.Column="0"
-                        Content="Password:"
-                        Style="{StaticResource login_label}"/>
 
-                    <PasswordBox Grid.Column="1" x:Name="pbPassword"/>
-                </Grid>
-                
-                <!-- Button container -->
-                <Grid Grid.Row="3">
-                    <Button
-                        Style="{StaticResource base_button}"
-                        Content="Login" Click="Button_Click"/>
-                </Grid>
-            </Grid>
-        </Border>
-    </Grid>
-</UserControl>
+
+ </UserControl>

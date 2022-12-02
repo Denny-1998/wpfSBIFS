@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace wpfSBIFS.Tools
 {
@@ -54,7 +56,15 @@ namespace wpfSBIFS.Tools
             }
             return false;
         }
-        
-        
+        public static async Task<bool> LabelChangeAsync(Label label, string errorString)
+        {
+            label.Content = errorString;
+            label.Foreground = System.Windows.Media.Brushes.Red;
+            await Task.Delay(500);
+            label.Foreground = System.Windows.Media.Brushes.Black;
+            return false;
+        }
 
+
+    }
 }
