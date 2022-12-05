@@ -2,90 +2,138 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Diagnostics;
+using System.Net.Http.Json;
+using System.Xml.Linq;
+using System.Text.Json;
+using Newtonsoft.Json.Linq;
+using wpfSBIFS.Tools;
+using System.Reflection.Emit;
+using System.Windows.Controls;
+using Label = System.Windows.Controls.Label;
 
-namespace wpfSBIFS.Model
-{
+namespace wpfSBIFS.Model { 
+
     public class ServerConnectionAdapter
     {
+    
         
-        TcpClient _client;
-        NetworkStream _ns;
-        StreamReader _reader;
-
+        HttpClient client;
+        Label label;
         string _HostName;
         int _Port;
+        string jwt;
 
-
-        public ServerConnectionAdapter(string HostName, int Port)
+      
+        public ServerConnectionAdapter(string HostName, int Port, HttpClient client,Label label)
         {
             _HostName = HostName;
             _Port = Port;
-            
-            connect();
+            this.client = client;
+            this.label = label;
+
         }
 
 
-        private async Task connect()
-        {
-            //build new connection
-            ConnectionBuilder cb = new ConnectionBuilder();
-            cb.AddHostname(_HostName);
-            cb.AddPort(_Port);
 
-            //connect 
-            try
+        public async Task <bool> Login(string User, string Password)
+        {
+           
+
+            //error handling for if user or password is empty 
+            if (Util.CheckUsernamePassword(User, Password))
             {
-                _client = await cb.Connect();
-                _ns = _client.GetStream();
-                _reader = new StreamReader(_ns);
-            } 
-            catch (Exception ex)
-            {
-                MessageBox.Show("something went wrong: \n\n" + ex.Message);
+                //showing the error under the login button
+                return await Util.LabelChangeAsync(label, "Please enter a username and password");
             }
 
+            //attaching user and password to login json 
+            IJson loginJson = new LoginJson
+            {
+                Email = User,
+                Password = Password,
+            };
+
+            //set timeout for client
+            client.Timeout = TimeSpan.FromSeconds(15);
+            HttpResponseMessage response;
+            try
+            {
+                response = await client.PostAsJsonAsync("https://localhost:8080/Api/Auth/Login", loginJson);
+            } 
+            catch (TaskCanceledException )
+            {
+                return await Util.LabelChangeAsync(label, "The request timed out!");
+            }
+         
+            //defining the cariable statuscode which was extracted from the request response
+            var StatusCode = (Int32)response.StatusCode;
+
+            //Checking the statuscode for all kinds of error statuscodes
+            if (Util.CheckStatusCode(StatusCode) != "")
+            {
+                //getting the error code from method
+                string errorString = (Util.CheckStatusCode(StatusCode));
+                //showing the error under the login button
+                return await Util.LabelChangeAsync(label, errorString);
+            }
+
+            //parsing the response text 
+            JObject json = JObject.Parse(await response.Content.ReadAsStringAsync());
+
+            //getting the jwt login token from response text
+            jwt = (string)json["jwt"];
+            return true;
+
+
         }
-
-
-
-        public async Task Login(string User, string Password)
+        public async Task <bool> Register(string User, string Password)
         {
 
             //error handling for if user or password is empty 
-            if (User.Equals("") || Password.Equals(""))
+            if (Util.CheckUsernamePassword(User, Password)) MessageBox.Show("Please enter username & password!");
+
+            //attaching user and password to register json 
+            IJson registerJson = new RegisterJson
             {
-                MessageBox.Show("Please enter username");
-                return;
+                Email = User,
+                Password = Password,
+            };
+
+            //making the login request
+            var response = await client.PostAsJsonAsync($"https://{_HostName}:{_Port}/Api/Auth/Register", registerJson);
+
+            //defining the cariable statuscode which was extracted from the request response
+            var StatusCode = (Int32)response.StatusCode;
+
+            //Checking the statuscode for all kinds of error statuscodes
+            if (Util.CheckStatusCode(StatusCode) != "")
+            {
+                MessageBox.Show((Util.CheckStatusCode(StatusCode)));
+                return false;
             }
 
+            //parsing the response text 
+            JObject json = JObject.Parse(response.Content.ToString());
 
-            //TODO: error handling
-            //          check if username and password are empty
-
-            //adding byte data for request
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes("{"+$"\"email:\":\"{User}\",\"password\":\"{Password}\"" +"}");
-            _ns.Write(data,0,data.Length);
-            // Buffer to store the response bytes.
-            data = new Byte[256];
-            String responseData = String.Empty;
-            Int32 bytes = _ns.Read(data, 0, data.Length);
-            responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-
-            //TODO: Get status code
-            if (responseData.Contains($"{User}")){
-                MessageBox.Show("Logged in successfully!");
-
-            } else if (responseData.Contains("Wrong"))
-            {
-                MessageBox.Show("Wrong username or password! \n");
-            }
+            //getting the jwt login token from response text
+            jwt = (string)json["jwt"];
+            return true;
 
         }
+
+
+
+
+
+        
 
     }
 }
