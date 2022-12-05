@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using wpfSBIFS.Model;
 using wpfSBIFS.ViewModel;
 
@@ -54,14 +55,19 @@ namespace wpfSBIFS.View
 
             if (await sva.Login(userName, passWord))
             {
-                this.Visibility = Visibility.Hidden;
+              
             
 
                 AdminPanel p = new AdminPanel();
                 p.Show();
-                
+
+                //close the login window
+                Window.GetWindow(this).Close();
+
+
+
             }
-            
+
 
 
         }

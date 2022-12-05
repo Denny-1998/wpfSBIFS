@@ -5,17 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpfSBIFS.View"
         mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
         Title="AdminPanel" Height="450" Width="800">
-    <Grid>
-        <ListView Name="lv" Margin="10,10,10,10" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="200"/>
-                    <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Value}" Width="200"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+    <Border Background="#272537" CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"></RowDefinition>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Admin Panel" Foreground="White" FontSize="25" Margin="12,0,12,0" FontFamily="/Resources/Fonts/#Poppins" VerticalAlignment="Center" TextAlignment="Center"/>
+            <StackPanel Grid.Row="1">
+                <RadioButton Content="Create User"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="12"
 
+                             
+                             Style="{StaticResource MenuButtonTheme}"/>
+                <RadioButton Content="Manage Groups"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="12"
 
-    </Grid>
+                             
+                             Style="{StaticResource MenuButtonTheme}"/>
+                <RadioButton Content="Delete Groups"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="12"
+
+                             
+                             Style="{StaticResource MenuButtonTheme}"/>
+
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>
