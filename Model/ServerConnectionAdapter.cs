@@ -62,8 +62,16 @@ namespace wpfSBIFS.Model {
             };
 
             //set timeout for client
-            client.Timeout = TimeSpan.FromSeconds(5);
-            var response = await client.PostAsJsonAsync("https://localhost:8080/Api/Auth/Login", loginJson);
+            client.Timeout = TimeSpan.FromSeconds(15);
+            HttpResponseMessage response;
+            try
+            {
+                response = await client.PostAsJsonAsync("https://localhost:8080/Api/Auth/Login", loginJson);
+            } 
+            catch (TaskCanceledException )
+            {
+                return await Util.LabelChangeAsync(label, "The request timed out!");
+            }
          
             //defining the cariable statuscode which was extracted from the request response
             var StatusCode = (Int32)response.StatusCode;

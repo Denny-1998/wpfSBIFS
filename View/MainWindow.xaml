@@ -6,9 +6,15 @@
         xmlns:local="clr-namespace:wpfSBIFS"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        AllowsTransparency="False" Background="Transparent"
         Title="MainWindow" Height="600" Width="540">
-    <Grid>
-        <ContentControl
-            Name="ccPanel"/>
-    </Grid>
+    
+        <Grid>
+        <Border Background="#ffffff" CornerRadius="10 10 10 10" >
+                <ContentControl
+            
+                Name="ccPanel"/>
+            </Border>
+        </Grid>
+    
 </Window>
