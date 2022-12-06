@@ -49,6 +49,7 @@
             </StackPanel>
             <TextBox Width="200" Height="50"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource ModernTextBox}" />
             <Button Style="{StaticResource MyCloseButtonStyle}" Grid.Column="1" Margin="560,10,10,35" Click="Button_Click" />
+            <ContentControl Grid.Column="1" Grid.Row="1" Margin="5" />
         </Grid>
     </Border>
 </Window>

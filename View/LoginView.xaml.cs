@@ -63,7 +63,7 @@ namespace wpfSBIFS.View
               
             
 
-                AdminPanel p = new AdminPanel();
+                AdminPanel p = new AdminPanel(sva);
                 p.Show();
 
                 //close the login window
