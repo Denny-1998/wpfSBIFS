@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,7 +28,13 @@ namespace wpfSBIFS
             InitializeComponent();
             ((App)App.Current).ccRef = this.ccPanel;
             ((App)App.Current).ChangeUserControl(App.container.Resolve<LoginView>());
-            
+            /*
+            Thread thread = new Thread(WorkThreadFunction);
+            thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
+            thread.Start();
+            thread.Join();*/
+
         }
+        
     }
 }

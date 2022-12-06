@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,16 +27,20 @@ namespace wpfSBIFS.View
     {
         ILoginViewModel loginViewModel;
         HttpClient client;
+        
 
         public LoginView(ILoginViewModel viewModel)
         {
             InitializeComponent();
-
+           
             // Set viewmodel received from DI as binding context
             loginViewModel = viewModel;
             this.DataContext = viewModel;
+            
+         
+
         }
-        
+
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -86,6 +91,11 @@ namespace wpfSBIFS.View
             pb.Password = string.Empty;
             pb.GotFocus -= Password_OnClick;
         }
+        
+       
+       
     }
+    
+
     
 }

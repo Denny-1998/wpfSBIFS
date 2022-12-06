@@ -18,6 +18,9 @@ using wpfSBIFS.Tools;
 using System.Reflection.Emit;
 using System.Windows.Controls;
 using Label = System.Windows.Controls.Label;
+using System.Windows.Input;
+using System.Drawing;
+using System.Threading;
 
 namespace wpfSBIFS.Model { 
 
@@ -53,6 +56,7 @@ namespace wpfSBIFS.Model {
                 //showing the error under the login button
                 return await Util.LabelChangeAsync(label, "Please enter a username and password");
             }
+           
 
             //attaching user and password to login json 
             IJson loginJson = new LoginJson
@@ -62,7 +66,7 @@ namespace wpfSBIFS.Model {
             };
 
             //set timeout for client
-            client.Timeout = TimeSpan.FromSeconds(15);
+            client.Timeout = TimeSpan.FromSeconds(10);
             HttpResponseMessage response;
             try
             {
@@ -71,6 +75,10 @@ namespace wpfSBIFS.Model {
             catch (TaskCanceledException )
             {
                 return await Util.LabelChangeAsync(label, "The request timed out!");
+                
+            } catch (HttpRequestException)
+            {
+                return await Util.LabelChangeAsync(label, "The server is not reachable!");
             }
          
             //defining the cariable statuscode which was extracted from the request response
