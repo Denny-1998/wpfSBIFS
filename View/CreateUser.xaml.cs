@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using wpfSBIFS.Model;
 
 namespace wpfSBIFS.View
 {
@@ -20,13 +21,26 @@ namespace wpfSBIFS.View
     /// </summary>
     public partial class CreateUser : UserControl
     {
-        public CreateUser()
+        ServerConnectionAdapter serverConnectionAdapter;
+        public CreateUser(ServerConnectionAdapter serverConnectionAdapter)
         {
+ 
+            this.serverConnectionAdapter = serverConnectionAdapter;
+
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //get login data from the ui
+            string userName = tbUserName.Text;
+            string passWord = pbPassword.Text;
+
+            //hard coded values for now
+            string hostName = "localhost";
+            int port = 8080;
+
+            
 
         }
     }

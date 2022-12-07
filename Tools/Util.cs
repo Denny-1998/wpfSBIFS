@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -58,12 +59,38 @@ namespace wpfSBIFS.Tools
         }
         public static async Task<bool> LabelChangeAsync(Label label, string errorString)
         {
+            //making the text of the label to the fitting error message
             label.Content = errorString;
+            //making the label visible
             label.Foreground = System.Windows.Media.Brushes.Red;
             await Task.Delay(500);
             label.Foreground = System.Windows.Media.Brushes.Black;
             return false;
         }
+
+        /*
+         * Generates a random password with the lenght 10 while looping until the lenght is reached then returning the pw
+        */
+        public static string GeneratePassword()
+        {
+            int lenght = 10;
+            const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            StringBuilder res = new StringBuilder();
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            {
+                byte[] uintBuffer = new byte[sizeof(uint)];
+
+                while (lenght-- > 0)
+                {
+                    rng.GetBytes(uintBuffer);
+                    uint num = BitConverter.ToUInt32(uintBuffer, 0);
+                    res.Append(validChars[(int)(num % (uint)validChars.Length)]);
+                }
+            }
+
+            return res.ToString();
+        }
+    
 
 
     }

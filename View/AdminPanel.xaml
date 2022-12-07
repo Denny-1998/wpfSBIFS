@@ -3,13 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:wpfSBIFS.ViewModel"
         xmlns:local="clr-namespace:wpfSBIFS.View"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
         Title="AdminPanel" Height="450" Width="800">
-    <Border Background="#272537" CornerRadius="20">
+    <Window.DataContext>
+        <viewModel:AdminPanelViewModel/>
+    </Window.DataContext>
+
+            <Border Background="#272537" CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"></ColumnDefinition>
@@ -25,7 +30,7 @@
                              Height="50"
                              Foreground="White"
                              FontSize="12"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}" />
                 <RadioButton Content="Delete User"
                              Height="50"
                              Foreground="White"
@@ -49,7 +54,7 @@
             </StackPanel>
             <TextBox Width="200" Height="50"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource ModernTextBox}" />
             <Button Style="{StaticResource MyCloseButtonStyle}" Grid.Column="1" Margin="560,10,10,35" Click="Button_Click" />
-            <ContentControl Grid.Column="1" Grid.Row="1" Margin="5" />
+            <ContentControl Grid.Column="1" Grid.Row="1" Margin="10" Content="{Binding CurrentView}"/>
         </Grid>
     </Border>
 </Window>

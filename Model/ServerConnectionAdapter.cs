@@ -107,9 +107,16 @@ namespace wpfSBIFS.Model {
         }
         public async Task<bool> Register(string User, string Password)
         {
-
-            //error handling for if user or password is empty 
-            if (Util.CheckUsernamePassword(User, Password)) MessageBox.Show("Please enter username & password!");
+            if (Password == "")
+            {
+                Password = Util.GeneratePassword();
+            }
+            //error handling for if user or password is empty  TODO: use other label
+            if (Util.CheckUsernamePassword(User, Password))
+            {
+                //showing the error under the login button
+                return await Util.LabelChangeAsync(label, "Please enter a username and password");
+            }
 
             //attaching user and password to register json 
             IJson registerJson = new RegisterJson
@@ -118,24 +125,36 @@ namespace wpfSBIFS.Model {
                 Password = Password,
             };
 
-            //making the login request
-            var response = await client.PostAsJsonAsync($"https://{_HostName}:{_Port}/Api/Auth/Register", registerJson);
+            //TODO: use other label
+           
+            HttpResponseMessage response;
+            try { 
+                
+                 response = await client.PostAsJsonAsync($"https://{_HostName}:{_Port}/Api/Auth/Register", registerJson);
+                }
+            catch (TaskCanceledException)
+                {
+                return await Util.LabelChangeAsync(label, "The request timed out!");
+
+                }
+            catch (HttpRequestException)
+                {
+                return await Util.LabelChangeAsync(label, "The server is not reachable!");
+                }
 
             //defining the cariable statuscode which was extracted from the request response
             var StatusCode = (Int32)response.StatusCode;
 
-            //Checking the statuscode for all kinds of error statuscodes
+            //Checking the statuscode for all kinds of error statuscodes TODO: use own label
             if (Util.CheckStatusCode(StatusCode) != "")
             {
-                MessageBox.Show((Util.CheckStatusCode(StatusCode)));
-                return false;
+                //getting the error code from method
+                string errorString = (Util.CheckStatusCode(StatusCode));
+                //showing the error under the login button
+                return await Util.LabelChangeAsync(label, errorString);
             }
 
-            //parsing the response text 
-            JObject json = JObject.Parse(response.Content.ToString());
-
-            //getting the jwt login token from response text
-            jwt = (string)json["jwt"];
+            
             return true;
 
         }
@@ -149,11 +168,7 @@ namespace wpfSBIFS.Model {
                 response = await client.GetAsync("https://localhost:8080/Api/Auth/Login");
             }
             catch (TaskCanceledException) { 
-
-
-                await Util.LabelChangeAsync(label, "The request timed out!");
                 return "";
-
             }
             catch (HttpRequestException)
             {
@@ -163,13 +178,9 @@ namespace wpfSBIFS.Model {
             //defining the cariable statuscode which was extracted from the request response
             var StatusCode = (Int32)response.StatusCode;
 
-            //Checking the statuscode for all kinds of error statuscodes
+            //Checking the statuscode 
             if (Util.CheckStatusCode(StatusCode) != "")
             {
-                //getting the error code from method
-                string errorString = (Util.CheckStatusCode(StatusCode));
-                //showing the error under the login button
-                await Util.LabelChangeAsync(label, errorString);
                 return "";
             }
 
@@ -178,11 +189,6 @@ namespace wpfSBIFS.Model {
             
             //returning the usercount as string
             return (string)json["countUsers"]; ;
-
-
-
-
-
 
 
         }

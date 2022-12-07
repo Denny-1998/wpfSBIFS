@@ -12,22 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using wpfSBIFS.Model;
+using wpfSBIFS.ViewModel;
 
 namespace wpfSBIFS.View
 {
     /// <summary>
     /// Interaktionslogik für HomeView.xaml
     /// </summary>
-    public partial class HomeView : AdminPanel
+    public partial class HomeView : UserControl
     {
-        ServerConnectionAdapter sva;
-        public HomeView(ServerConnectionAdapter sva)
-        {
-            this.sva = sva;
-            InitializeComponent();
-        }
-        public void GetUserCount()
+        public HomeView()
         {
             
         }

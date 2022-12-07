@@ -18,6 +18,9 @@
                 <ResourceDictionary Source="Resources/ModernTextBox.xaml"/>
                 <ResourceDictionary Source="Resources/MyCloseButtonStye.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
             <!--
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
