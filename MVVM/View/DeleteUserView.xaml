@@ -1,0 +1,66 @@
+﻿<UserControl
+    x:Class="wpfSBIFS.MVVM.View.DeleteUserView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="clr-namespace:PasswordBoxMVVM.Components;assembly=PasswordBoxMVVM"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:wpfSBIFS.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:wpfSBIFS.MVVM.ViewModel"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <Grid Margin="0,0,0,0">
+        <Grid.Effect>
+            <DropShadowEffect
+                BlurRadius="30"
+                Opacity="0.4"
+                ShadowDepth="1" />
+        </Grid.Effect>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+
+        <!--  Left Section  -->
+
+
+        <!--  Right Section  -->
+        <Border
+            Grid.Column="1"
+            Margin="1,-101,1,1"
+            Background="Transparent"
+            CornerRadius="10 10 10 10">
+            <Grid>
+                <!--  Inputs  -->
+                <StackPanel Margin="75,0" VerticalAlignment="Center">
+                    <TextBox
+                        x:Name="tbUserName"
+                        BorderBrush="#C5C8CC"
+                        BorderThickness="0,0,0,1.5"
+                        Opacity="0.5"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding Username}" />
+                    <Label
+                        x:Name="lblLoginStatus"
+                        HorizontalAlignment="Center"
+                        Content="{Binding Status}" />
+                    <StackPanel Orientation="Horizontal">
+                        <Button
+                            Width="550"
+                            Height="45"
+                            Background="#05B790"
+                            Command="{Binding DeleteUserCommand}"
+                            Content="Delete User"
+                            FontSize="18"
+                            Foreground="#ffffff" />
+
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using wpfSBIFS.Tools;
 
-namespace wpfSBIFS.Model
+namespace wpfSBIFS.MVVM.Model
 {
     internal class ReadOneGroup
     {
@@ -43,11 +43,7 @@ namespace wpfSBIFS.Model
             var StatusCode = (Int32)response.StatusCode;
 
             //Checking the statuscode for all kinds of error statuscodes
-            if (Util.CheckStatusCode(StatusCode) != "")
-            {
-                MessageBox.Show((Util.CheckStatusCode(StatusCode)));
-                return "";
-            }
+            
 
             //parsing the response text 
             JObject json = JObject.Parse(response.Content.ToString());

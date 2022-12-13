@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using wpfSBIFS.MVVM.Model;
 
 namespace wpfSBIFS.Tools
 {
@@ -17,8 +19,9 @@ namespace wpfSBIFS.Tools
         /// </summary>
         /// <param name="StatusCode"></param>
         /// <returns> error message </returns>
+        
 
-        public static String CheckStatusCode(int StatusCode)
+        public static String CheckStatusCode(int StatusCode, int expectedCode)
         {
             if (StatusCode == 401)
             {
@@ -40,7 +43,7 @@ namespace wpfSBIFS.Tools
             {
                 return "Service unavailable, please try again later!";
             }
-            if ((StatusCode) != 200)
+            if (StatusCode != expectedCode)
             {
                 return "Unknown error" + StatusCode;
             }
@@ -90,7 +93,21 @@ namespace wpfSBIFS.Tools
 
             return res.ToString();
         }
-    
+        public static ServerConnectionAdapter sva;
+
+        /*
+        public Util()
+        {
+            // Create a new HttpClient object.
+            HttpClient client = new HttpClient();
+
+            // Initialize the sva object with the host name, port, and HttpClient.
+            sva = new ServerConnectionAdapter(hostName, port, client);
+        }
+        
+        */
+
+
 
 
     }

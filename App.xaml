@@ -2,10 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:wpfSBIFS"
-             xmlns:viewModel="clr-namespace:wpfSBIFS.ViewModel"
-             xmlns:view="clr-namespace:wpfSBIFS.View"
-             StartupUri="View/MainWindow.xaml">
-    
+             xmlns:viewModel="clr-namespace:wpfSBIFS.MVVM.ViewModel"
+             xmlns:view="clr-namespace:wpfSBIFS.MVVM.View"
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -20,11 +19,18 @@
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
+                
             </DataTemplate>
-            <!--
-            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-                <view:HomeView/>
-            </DataTemplate> -->
+            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+                <view:LoginView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
+                <view:RegisterView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DeleteUserViewModel}">
+                <view:DeleteUserView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

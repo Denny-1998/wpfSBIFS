@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace wpfSBIFS.ViewModel
+namespace wpfSBIFS.MVVM.Model
 {
-    public interface ILoginViewModel
+    public class DeleteJson : IJsonDelete
     {
+        public string Email { get; set; }
+       
+
     }
 }

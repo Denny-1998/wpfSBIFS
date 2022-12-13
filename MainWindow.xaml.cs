@@ -12,18 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using wpfSBIFS.ViewModel;
 
-namespace wpfSBIFS.View
+namespace wpfSBIFS
 {
     /// <summary>
-    /// Interaktionslogik für HomeView.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class HomeView : UserControl
+    public partial class MainWindow : Window
     {
-        public HomeView()
+        public MainWindow()
         {
-            
+            InitializeComponent();
         }
     }
 }

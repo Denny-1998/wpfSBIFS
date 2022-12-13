@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace wpfSBIFS.Model
+namespace wpfSBIFS.MVVM.Model
 {
     public interface IJson
     {
         public string Email { get; set; }
         public string Password { get; set; }
+    }
+    public interface IJsonDelete
+    {
+        public string Email { get; set; }
     }
 }
