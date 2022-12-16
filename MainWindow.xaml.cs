@@ -12,8 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Unity;
-using wpfSBIFS.View;
 
 namespace wpfSBIFS
 {
@@ -25,9 +23,6 @@ namespace wpfSBIFS
         public MainWindow()
         {
             InitializeComponent();
-            ((App)App.Current).ccRef = this.ccPanel;
-            ((App)App.Current).ChangeUserControl(App.container.Resolve<LoginView>());
-            
         }
     }
 }

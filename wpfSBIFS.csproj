@@ -8,17 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\login.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="PasswordBoxMVVM" Version="1.0.5" />
     <PackageReference Include="Unity" Version="5.11.10" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Resources\login.png" />
   </ItemGroup>
 
 </Project>

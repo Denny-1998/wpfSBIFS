@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace wpfSBIFS.Model
+namespace wpfSBIFS.MVVM.Model
 {
     public class LoginJson : IJson
     {

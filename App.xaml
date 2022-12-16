@@ -2,7 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:wpfSBIFS"
-             StartupUri="View/MainWindow.xaml">
+             xmlns:viewModel="clr-namespace:wpfSBIFS.MVVM.ViewModel"
+             xmlns:view="clr-namespace:wpfSBIFS.MVVM.View"
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -12,7 +14,25 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="Resources/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Resources/ModernTextBox.xaml"/>
+                <ResourceDictionary Source="Resources/MyCloseButtonStye.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+                
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+                <view:LoginView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
+                <view:RegisterView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DeleteUserViewModel}">
+                <view:DeleteUserView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ManageGroupsViewModel}">
+                <view:ManageGroupsView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

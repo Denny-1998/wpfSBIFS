@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace wpfSBIFS.View
+namespace wpfSBIFS.MVVM.View
 {
     /// <summary>
-    /// Interaktionslogik für AdminPanel.xaml
+    /// Interaktionslogik für ManageGroupsView.xaml
     /// </summary>
-    public partial class AdminPanel : Window
+    public partial class ManageGroupsView : UserControl
     {
-        public AdminPanel()
+        public ManageGroupsView()
         {
             InitializeComponent();
         }
