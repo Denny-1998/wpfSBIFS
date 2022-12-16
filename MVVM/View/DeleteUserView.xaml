@@ -37,16 +37,31 @@
                 <!--  Inputs  -->
                 <StackPanel Margin="75,0" VerticalAlignment="Center">
                     <TextBox
+   
                         x:Name="tbUserName"
                         BorderBrush="#C5C8CC"
                         BorderThickness="0,0,0,1.5"
-                        Opacity="0.5"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        Text="{Binding Username}" />
+                        Text="{Binding Username}"
+                        Opacity="0.8"
+                        >
+                        
+                        
+                       
+                    </TextBox>
+
                     <Label
                         x:Name="lblLoginStatus"
                         HorizontalAlignment="Center"
-                        Content="{Binding Status}" />
+                        Content="{Binding Status}">
+                        <Label.Background>
+                            <SolidColorBrush Opacity="0.5" />
+                        </Label.Background>
+                        <Label.Foreground>
+                            <SolidColorBrush Opacity="0.86" Color="#ffffff" />
+                        </Label.Foreground>
+                    </Label>
+
                     <StackPanel Orientation="Horizontal">
                         <Button
                             Width="550"

@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="wpfSBIFS.MVVM.View.ManageGroupsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:wpfSBIFS.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid x:Name="myDataGrid" Width="340" Height="400" Margin="-450,-25,0,0" />
+        <Button x:Name="getDataButton" Content="Get All Groups" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Height="50" Width="250" Margin="400,69,150,331" />
+        <TextBox x:Name="groupIDTextBlock" Text="{Binding username}" Width="250" Height="25" Style="{StaticResource MaterialDesignTextBox}" BorderBrush="#C5C8CC" Margin="400,13,150,412"/>
+    </Grid>
+</UserControl>

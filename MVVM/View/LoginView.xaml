@@ -40,21 +40,33 @@
                         x:Name="tbUserName"
                         BorderBrush="#C5C8CC"
                         BorderThickness="0,0,0,1.5"
-                        Opacity="0.5"
-                        
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        Text="{Binding Username}" />
+                        Text="{Binding Username}" >
+                        <TextBox.Background>
+                            <SolidColorBrush Opacity="0.5"  />
+                        </TextBox.Background>
+                        <TextBox.Foreground>
+                            <SolidColorBrush Opacity="1" Color="#ffffff" />
+                        </TextBox.Foreground>
+                    </TextBox>
                     <components:BindablePasswordBox
                         x:Name="pbPassword"
                         Margin="0,27,0,0"
                         BorderBrush="#C5C8CC"
                         BorderThickness="0,0,0,1.5"
-                        Opacity="0.5"
+                        Opacity="0.8"
                         Password="{Binding Password}" />
                     <Label
                         x:Name="lblLoginStatus"
                         HorizontalAlignment="Center"
-                        Content="{Binding Status}" />
+                        Content="{Binding Status}">
+                        <Label.Background>
+                            <SolidColorBrush Opacity="0.5" />
+                        </Label.Background>
+                        <Label.Foreground>
+                            <SolidColorBrush Opacity="0.86" Color="#ffffff" />
+                        </Label.Foreground>
+                    </Label>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,0">
                         <Button
                             Width="550"

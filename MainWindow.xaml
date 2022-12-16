@@ -32,36 +32,36 @@
                              Foreground="White"
                              FontSize="12"
                              Style="{StaticResource MenuButtonTheme}"
-                            
                              Command="{Binding HomeViewCommand}"
                              />
-                
+          
                 <RadioButton Content="Create User"
                              Height="50"
                              Foreground="White"
                              FontSize="12"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding RegisterViewCommand}"/>
+                             Command="{Binding RegisterViewCommand}"
+                             />
                 <RadioButton Content="Delete User"
                              Height="50"
                              Foreground="White"
                              FontSize="12"
                              Command="{Binding DeleteUserViewCommand}"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             />
                 <RadioButton Content="Manage Groups"
                              Height="50"
                              Foreground="White"
                              FontSize="12"
-
-                             
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Command="{Binding ManageGroupsViewCommand}"
+                             Style="{StaticResource MenuButtonTheme}"
+                             />
                 <RadioButton Content="Delete Groups"
                              Height="50"
                              Foreground="White"
                              FontSize="12"
-
-                             
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             />
 
             </StackPanel>
             <TextBox Width="200" Height="50"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource ModernTextBox}" />

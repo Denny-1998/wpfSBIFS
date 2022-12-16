@@ -26,7 +26,7 @@ namespace wpfSBIFS.MVVM.Model
 
         public async Task<bool> Login(string user, string password, LoginViewModel lvm)
         {
-
+            
             //attaching user and password to login json 
             IJson loginJson = new LoginJson
             {
@@ -34,11 +34,9 @@ namespace wpfSBIFS.MVVM.Model
                 Password = password,
             };
 
-            
-
             HttpResponseMessage response;
 
-            response = await _client.PostAsJsonAsync("https://localhost:8080/Api/Auth/Login", loginJson);
+            response = await _client.PostAsJsonAsync($"https://{_hostName}:{_port}/Api/Auth/Login", loginJson);
 
             //defining the cariable statuscode which was extracted from the request response
             int statusCode = (int)response.StatusCode;
@@ -60,19 +58,14 @@ namespace wpfSBIFS.MVVM.Model
             _jwt = (string)json["jwt"];
             string authenticationCheck = (string)json["role"];
             if (authenticationCheck == "user")
-            
             {
                 lvm.Status = "You are not authorized to use this application";
                 return false;
             }
 
-
-
+            //setting the authorization header for the client
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _jwt);
             
-
-
-
             return true;
         }
 

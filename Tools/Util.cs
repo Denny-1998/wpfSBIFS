@@ -15,41 +15,33 @@ namespace wpfSBIFS.Tools
     public class Util
     {
         /// <summary>
-        /// it checks for different failed satuscodes and returns the corresponding error message
+        /// it checks for different failed satuscodes and returns the corresponding error message 
         /// </summary>
         /// <param name="StatusCode"></param>
         /// <returns> error message </returns>
-        
-
-        public static String CheckStatusCode(int StatusCode, int expectedCode)
+        public static String CheckStatusCode(int statusCode, int expectedCode)
         {
-            if (StatusCode == 401)
+            switch (statusCode)
             {
-                return "Wrong username or password!";
-            }
-            if (StatusCode == 403)
-            {
-                return "Access denied!";
-            }
-            if (StatusCode == 501)
-            {
-                return "Internal Server Error, please contact administrator!";
-            }
-            if (StatusCode == 400)
-            {
-                return "Bad request, please contact administrator!";
-            }
-            if (StatusCode == 503)
-            {
-                return "Service unavailable, please try again later!";
-            }
-            if (StatusCode != expectedCode)
-            {
-                return "Unknown error" + StatusCode;
+                case 400:
+                    return "Bad request, please contact administrator!";
+                case 401:
+                    return "Wrong username or password!";
+                case 403:
+                    return "Access denied!";
+                case 501:
+                    return "Internal Server Error, please contact administrator!";
+                case 503:
+                    return "Service unavailable, please try again later!";
+                default:
+                    if (statusCode != expectedCode)
+                    {
+                        return "Unknown error " + statusCode;
+                    }
+                    break;
             }
 
             return "";
-
 
         }
         public static Boolean CheckUsernamePassword(string username, string password)

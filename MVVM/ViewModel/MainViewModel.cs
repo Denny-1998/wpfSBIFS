@@ -14,6 +14,8 @@ namespace wpfSBIFS.MVVM.ViewModel
         public ICommand RegisterViewCommand { get; set; }
         public ICommand CloseCommand { get; }
         public ICommand DeleteUserViewCommand { get; set; }
+
+        public ICommand ManageGroupsViewCommand { get; set; }
         public ViewModelBase HomeVM { get; set; }
 
         public CloseCommand closeCommand;
@@ -21,6 +23,7 @@ namespace wpfSBIFS.MVVM.ViewModel
         public ViewModelBase DeleteUserVM { get; set; }
         public ViewModelBase LoginVM { get; set; }
         public ViewModelBase RegisterVM { get; set; }
+        public ViewModelBase ManageGroupsVM { get; set; }
 
 
         HttpClient client;
@@ -49,8 +52,15 @@ namespace wpfSBIFS.MVVM.ViewModel
             HomeVM = new HomeViewModel(sva);
             RegisterVM = new RegisterViewModel(sva);
             DeleteUserVM = new DeleteUserViewModel(sva);
+            ManageGroupsVM = new ManageGroupsViewModel();
 
             CurrentView = LoginVM;
+
+            //making all commands for the change of view
+            ManageGroupsViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = ManageGroupsVM;
+            });
 
             DeleteUserViewCommand = new RelayCommand(o =>
             {

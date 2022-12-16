@@ -30,7 +30,9 @@
             <DataTemplate DataType="{x:Type viewModel:DeleteUserViewModel}">
                 <view:DeleteUserView/>
             </DataTemplate>
-
+            <DataTemplate DataType="{x:Type viewModel:ManageGroupsViewModel}">
+                <view:ManageGroupsView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
